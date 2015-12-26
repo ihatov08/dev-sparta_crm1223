@@ -9,9 +9,12 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    @customer.save
+    if @customer.save
     redirect_to @customer
+  else
+    render :new
   end
+end
 
   def edit
   end
