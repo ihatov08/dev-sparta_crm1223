@@ -34,6 +34,9 @@ end
   end
 
   def destroy
+    @customer = Customer.find(params[:id])
+    @customer.destroy
+    redirect_to customers_url
   end
 
   private
