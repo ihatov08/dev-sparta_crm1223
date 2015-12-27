@@ -1,7 +1,12 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy ]
   def index
-    @customers = Customer.page(params[:page])
+    # @customers = customer.all
+    # @customers = Customer.page(params[:page])
+    @q = Customer.ransack(params[:q])
+    # 定型文
+    @customers = @q.result.page(params[:page])
+    # resultメソッドを使う。page(params[:page])はkaminariの記法
   end
 
   def new
