@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229075121) do
+ActiveRecord::Schema.define(version: 20151229143346) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "user_id"
   end
 
   add_index "comments", ["customer_id"], name: "index_comments_on_customer_id"
@@ -42,6 +43,13 @@ ActiveRecord::Schema.define(version: 20151229075121) do
   add_index "customers", ["company_id"], name: "index_customers_on_company_id"
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true
 
+  create_table "migrations", force: :cascade do |t|
+    t.string   "AddImageUrlToUsers"
+    t.string   "image_url"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -57,6 +65,7 @@ ActiveRecord::Schema.define(version: 20151229075121) do
     t.datetime "updated_at",                          null: false
     t.string   "family_name"
     t.string   "given_name"
+    t.string   "image_url"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
